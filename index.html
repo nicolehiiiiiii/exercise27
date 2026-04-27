@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>響應式網頁作業</title>
+    <style>
+        /* 基礎樣式：設定背景與外層容器 */
+        body {
+            background-color: #7bb3f4; /* 圖片外圍的藍色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 通用區塊樣式 */
+        .box {
+            margin: 5px;
+            border-radius: 4px;
+        }
+
+        /* 頂部綠色大區塊 */
+        .header-block {
+            height: 120px;
+            background-color: #b5d36b;
+            margin-bottom: 10px;
+        }
+
+        /* 中間藍綠色區塊群組 */
+        .middle-group {
+            display: flex;
+            flex-direction: row; /* 預設為橫排 (Layout b) */
+        }
+
+        .middle-box {
+            flex: 1;
+            height: 80px;
+            background-color: #63b9c4;
+        }
+
+        /* 底部灰色區塊群組 */
+        .bottom-group {
+            display: flex;
+            flex-wrap: wrap; /* 讓它可以換行 */
+            margin-top: 10px;
+        }
+
+        .bottom-box {
+            flex: 1;
+            min-width: 20%; /* 確保在寬螢幕時四個並排 */
+            height: 40px;
+            background-color: #e5e5e5;
+        }
+
+        /* --- 響應式關鍵：當寬度小於 480px 時 (Layout a) --- */
+        @media screen and (max-width: 480px) {
+            .middle-group {
+                flex-direction: column; /* 改為垂直堆疊 */
+            }
+
+            .bottom-group {
+                /* 根據圖片 (a)，底部灰色塊變成 2x2 排列 */
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .bottom-box {
+                min-width: unset; /* 取消寬螢幕時的限制 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="header-block box"></div>
+
+        <div class="middle-group">
+            <div class="middle-box box"></div>
+            <div class="middle-box box"></div>
+            <div class="middle-box box"></div>
+        </div>
+
+        <div class="bottom-group">
+            <div class="bottom-box box"></div>
+            <div class="bottom-box box"></div>
+            <div class="bottom-box box"></div>
+            <div class="bottom-box box"></div>
+        </div>
+    </div>
+
+</body>
+</html>
