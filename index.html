@@ -3,99 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最終修正版</title>
+
     <style>
-        body {
-            background-color: #7bb3f4;
+        /* CSS 樣式直接寫在這裡 */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+            padding: 0;
         }
 
-        /* 關鍵點 1：高度不要寫死，用 min-height */
-        .white-canvas {
+        body {
+            background-color: #4da6ff; /* 外層藍色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 主白色容器 */
+        .container {
             background-color: white;
+            padding: 20px;
+            border-radius: 15px;
             width: 100%;
-            max-width: 500px;
-            padding: 15px;
-            min-height: 100px; 
-            height: auto; /* 讓它隨內容自動變長 */
-            box-sizing: border-box;
+            max-width: 600px;
+            display: grid;
+            gap: 12px;
+            /* 預設大螢幕佈局 (b): 12格網格系統方便分配 3 欄與 4 欄 */
+            grid-template-columns: repeat(12, 1fr);
         }
 
         .box {
-            border-radius: 5px;
-            margin: 5px;
+            border-radius: 4px;
         }
 
-        .header {
+        /* 綠色區塊 (Header) */
+        .green {
+            background-color: #a3d14f;
+            grid-column: span 12;
             height: 120px;
-            background-color: #b5d36b;
         }
 
-        /* 關鍵點 2：中間藍色區塊容器 */
-        .middle-container {
-            display: flex;
-            flex-direction: row; /* 預設橫排 (Layout b) */
+        /* 藍色區塊 (中間並排) */
+        .blue {
+            background-color: #00bcd4;
+            grid-column: span 4; /* 12/4 = 3 欄並排 */
+            height: 180px;
         }
 
-        .blue-item {
-            flex: 1;
+        /* 灰色區塊 (底部並排) */
+        .light-gray {
+            background-color: #eceff1;
+            grid-column: span 3; /* 12/3 = 4 欄並排 */
             height: 80px;
-            background-color: #008B8B; /* 深藍綠色，確保看得到 */
         }
 
-        .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .gray-item {
-            flex: 1;
-            min-width: 20%;
-            height: 40px;
-            background-color: #d3d3d3;
-        }
-
-        /* 手機模式切換 */
-        @media screen and (max-width: 480px) {
-            .middle-container {
-                flex-direction: column; /* 變直排 (Layout a) */
+        /* --- 響應式斷點：寬度小於 480px (a) --- */
+        @media (max-width: 480px) {
+            .container {
+                /* 在小螢幕改為 2 欄位系統 */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
 
-            .blue-item {
-                height: 70px;
-                margin: 5px 0;
+            .green {
+                grid-column: span 2;
+                height: 100px;
             }
 
-            .footer-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+            .blue {
+                grid-column: span 2; /* 藍色變為垂直堆疊 (佔滿全寬) */
+                height: 60px;
+            }
+
+            .light-gray {
+                grid-column: span 1; /* 灰色變為 2x2 排列 */
+                height: 50px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="white-canvas">
-        <div class="header box"></div>
+    <div class="container">
+        <div class="box green"></div>
 
-        <div class="middle-container">
-            <div class="blue-item box"></div>
-            <div class="blue-item box"></div>
-            <div class="blue-item box"></div>
-        </div>
+        <div class="box blue"></div>
+        <div class="box blue"></div>
+        <div class="box blue"></div>
 
-        <div class="footer-container">
-            <div class="gray-item box"></div>
-            <div class="gray-item box"></div>
-            <div class="gray-item box"></div>
-            <div class="gray-item box"></div>
-        </div>
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
     </div>
 
 </body>
 </html>
-
